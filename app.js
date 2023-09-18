@@ -1,71 +1,43 @@
-// two modular way 
-const readline=require('readline');
-const rl=readline.createInterface({input:process.stdin, output:process.stdout});
+const fs=require('fs');
+// create a file system here 
 
-const generateRan=()=>{
-    return Math.floor((Math.random()*10)+1);
-    
-}
-
-const ansQuestion=()=>{
-    let num1=generateRan();
-    let num2=generateRan();
-    let answer=num1+num2;
-
-    rl.question(`What is ${num1}+${num2} \n`, (userInput)=>{
-        if(userInput.trim()==answer){
-            rl.close();
-
-        }else{
-            rl.setPrompt(`Incorrect answer try again `);
-            rl.prompt();
-            ansQuestion();
-        }
-
+fs.writeFile('example.txt', "This is my example file now ",(err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log('File is created successfully now ');
+    fs.readFile('example.txt', 'utf-8', (err, file)=>{
+        if(err)
+            console.log(err);
+        else
+            console.log(file);
     })
-}
+})
 
-ansQuestion();
+// file delete 
 
-rl.on('close',()=>{
-    console.log('Correct. Thanks you for your response');
-
+fs.unlink('example2.txt',(err)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log('successfully delete the file now ');
+    }
 })
 
 
-
-
-// one declarative way 
-// const { userInfo } = require('os');
-// const readline=require('readline');
-// const rl=readline.createInterface({input:process.stdin, 
-// output:process.stdout
-// });
-
-// let num1=Math.floor((Math.random()*10)+1);
-// let num2=Math.floor((Math.random()*10)+1);
-
-// let answer=num1+num2;
-
-// rl.question(`What is ${num1}+${num2} \n`,(userInput)=>{
-//     if(userInput.trim()==answer){
-//         rl.close();
-//     }else{
-//         rl.setPrompt('InValid answer try again \n');
-//         rl.prompt();
-//         rl.on('line',(userInput)=>{
-//             if(userInput.trim()==answer){
-//                 rl.close();
-//             }else{
-//                 rl.setPrompt(`Your answer is ${userInput}: incorrect \n`);
-//                 rl.prompt();
-//             }
-//         })
-//     }
+//  appending data at the end of the file here 
+// fs.appendFile('example.txt', 'Some data is successfully appended to the last section in the file', (err)=>{
+//     if(err)
+//         console.log(err);
+//     else   
+//         console.log("Successfully data appended to the file system ");
 // });
 
 
-// rl.on('close',(userInput)=>{
-//     console.log('Correct answer');
+// Rename the file 
+// fs.rename('example.txt', 'example2.txt', (err)=>{
+//     if(err)
+//         console.log(err);
+//     else
+//         console.log('successfully rename the file now');
 // })
-
