@@ -1,43 +1,59 @@
 const fs=require('fs');
-// create a file system here 
 
-fs.writeFile('example.txt', "This is my example file now ",(err)=>{
-    if(err)
-        console.log(err);
-    else
-        console.log('File is created successfully now ');
-    fs.readFile('example.txt', 'utf-8', (err, file)=>{
-        if(err)
-            console.log(err);
-        else
-            console.log(file);
-    })
-})
-
-// file delete 
-
-fs.unlink('example2.txt',(err)=>{
+fs.readdir('./tutorial',(err,files)=>{
     if(err){
         console.log(err);
     }else{
-        console.log('successfully delete the file now ');
+        for(let file of files){
+            fs.unlink('./tutorial/'+file,(err)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log('File is deleted successfully here ');
+                }
+            })
+        }
     }
 })
 
 
-//  appending data at the end of the file here 
-// fs.appendFile('example.txt', 'Some data is successfully appended to the last section in the file', (err)=>{
-//     if(err)
-//         console.log(err);
-//     else   
-//         console.log("Successfully data appended to the file system ");
-// });
 
 
-// Rename the file 
-// fs.rename('example.txt', 'example2.txt', (err)=>{
-//     if(err)
+
+
+
+
+
+
+
+
+// fs.unlink('./tutorial/exam.txt', (err)=>{
+//     if(err){
 //         console.log(err);
-//     else
-//         console.log('successfully rename the file now');
+//     }else{
+//         fs.mkdir('tutorial', (err)=>{
+//             if(err){
+//                 console.log(err);
+//             }else{
+             
+//                 console.log('file is created successfully! ');
+//             }
+//         })
+//     }
+// })
+
+
+
+// fs.mkdir('tutorial', (err)=>{
+//     if(err){
+//         console.log(err);
+//     }else{
+//         fs.writeFile('./tutorial/exam.txt', 'this is only for exam and practice', (err)=>{
+//             if(err){
+//                 console.log(err);
+//             }else{
+//                 console.log('file is created successfully now ');
+//             }
+//         })
+//     }
 // })
